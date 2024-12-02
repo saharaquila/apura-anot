@@ -1,0 +1,281 @@
+<html><head><base href="." />
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Creepster', cursive;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000000; /* Changed to pure black */
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="url(%23pattern)"/><defs><pattern id="pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M10 0c0 20-20 20-20 0s20-20 20 0" stroke="%23ff660022" fill="none"/></pattern></defs></svg>');
+    overflow: hidden;
+  }
+
+  .falling-ghost {
+    position: fixed;
+    pointer-events: none;
+    opacity: 0.3;
+    z-index: -1;
+    animation: fall linear infinite;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(-100px) translateX(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY(100vh) translateX(50px) rotate(360deg);
+    }
+  }
+
+  .login-container {
+    background: rgba(0, 0, 0, 0.95); /* Adjusted to match black theme */
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(255,102,0,0.2);
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid #ff6600;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ghost {
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.2;
+    pointer-events: none;
+    animation: floatGhost 4s ease-in-out infinite;
+  }
+
+  @keyframes floatGhost {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-50%) translateX(10px); }
+  }
+
+  .logo {
+    display: block;
+    margin: 0 auto 2rem;
+  }
+
+  h2 {
+    text-align: center;
+    color: #ff6600;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px #ff6600;
+  }
+
+  .input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ff6600;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+    background: rgba(0, 0, 0, 0.8); /* Adjusted to match black theme */
+    color: #ff9966;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  input:focus {
+    border-color: #ff9966;
+    outline: none;
+    box-shadow: 0 0 10px rgba(255,102,0,0.5);
+  }
+
+  label {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff6600;
+    transition: all 0.3s;
+    pointer-events: none;
+    background: #000000; /* Adjusted to match black theme */
+    padding: 0 0.4rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  input:focus + label,
+  input:not(:placeholder-shown) + label {
+    top: 0;
+    font-size: 0.8rem;
+    color: #ff9966;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #ff6600;
+    color: #000000; /* Adjusted to match black theme */
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  button:hover {
+    background: #ff9966;
+    transform: translateY(-1px);
+    box-shadow: 0 0 15px rgba(255,102,0,0.5);
+  }
+
+  .links {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .links a {
+    color: #ff6600;
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    color: #ff9966;
+    text-decoration: underline;
+    text-shadow: 0 0 5px #ff6600;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+
+  @keyframes glow {
+    0% { filter: drop-shadow(0 0 5px #ff6600); }
+    50% { filter: drop-shadow(0 0 15px #ff9966); }
+    100% { filter: drop-shadow(0 0 5px #ff6600); }
+  }
+</style>
+</head>
+<body>
+  <div class="login-container">
+    <svg class="ghost" width="100" height="100" viewBox="0 0 100 100">
+      <path d="M20,40 Q50,0 80,40 L80,80 Q65,90 50,80 Q35,90 20,80 Z" fill="#ff660033"/>
+      <circle cx="35" cy="35" r="5" fill="#ff660033"/>
+      <circle cx="65" cy="35" r="5" fill="#ff660033"/>
+      <path d="M40,50 Q50,60 60,50" fill="none" stroke="#ff660033" stroke-width="3"/>
+    </svg>
+
+    <svg class="logo" width="80" height="80" viewBox="0 0 80 80" style="animation: float 4s ease-in-out infinite, glow 2s ease-in-out infinite">
+      <path d="M40 10 L70 70 L40 60 L10 70 Z" fill="none" stroke="#ff6600" stroke-width="3"/>
+      <circle cx="30" cy="35" r="5" fill="#ff6600"/>
+      <circle cx="50" cy="35" r="5" fill="#ff6600"/>
+      <path d="M30 50 Q40 60 50 50" fill="none" stroke="#ff6600" stroke-width="3"/>
+    </svg>
+    
+    <h2>HAUNTED LOGIN</h2>
+    
+    <form id="loginForm">
+      <div class="input-group">
+        <input type="email" id="email" placeholder=" " required>
+        <label for="email">Email</label>
+      </div>
+      
+      <div class="input-group">
+        <input type="password" id="password" placeholder=" " required>
+        <label for="password">Password</label>
+      </div>
+      
+      <button type="submit">Enter if you dare</button>
+    </form>
+    
+    <div class="links">
+      <a href="https://example.com/forgot-password">Lost in the Shadows?</a>
+      <span style="color: #ff6600"> · </span>
+      <a href="https://example.com/signup">Join the Haunting</a>
+    </div>
+  </div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  
+  const button = e.target.querySelector('button');
+  button.textContent = 'Summoning...';
+  button.disabled = true;
+  
+  setTimeout(() => {
+    button.textContent = 'Welcome to the Dark Side!';
+    button.style.backgroundColor = '#660000';
+    button.style.color = '#ff6600';
+    
+    setTimeout(() => {
+      button.textContent = 'Enter if you dare';
+      button.style.backgroundColor = '#ff6600';
+      button.style.color = '#000000';
+      button.disabled = false;
+    }, 2000);
+  }, 1500);
+});
+
+function createFallingGhost() {
+  const ghost = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  ghost.setAttribute("class", "falling-ghost");
+  ghost.setAttribute("width", "40");
+  ghost.setAttribute("height", "40");
+  ghost.setAttribute("viewBox", "0 0 100 100");
+  
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", "M20,40 Q50,0 80,40 L80,80 Q65,90 50,80 Q35,90 20,80 Z");
+  path.setAttribute("fill", "#ff660033");
+  
+  const eye1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  eye1.setAttribute("cx", "35");
+  eye1.setAttribute("cy", "35");
+  eye1.setAttribute("r", "5");
+  eye1.setAttribute("fill", "#ff660033");
+  
+  const eye2 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  eye2.setAttribute("cx", "65");
+  eye2.setAttribute("cy", "35");
+  eye2.setAttribute("r", "5");
+  eye2.setAttribute("fill", "#ff660033");
+  
+  ghost.appendChild(path);
+  ghost.appendChild(eye1);
+  ghost.appendChild(eye2);
+  
+  ghost.style.left = Math.random() * window.innerWidth + 'px';
+  ghost.style.animationDuration = (Math.random() * 5 + 5) + 's';
+  
+  document.body.appendChild(ghost);
+  
+  ghost.addEventListener('animationend', () => {
+    ghost.remove();
+  });
+}
+
+setInterval(createFallingGhost, 2000);
+
+for(let i = 0; i < 5; i++) {
+  setTimeout(createFallingGhost, i * 1000);
+}
+</script>
+</body></html>
